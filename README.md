@@ -66,7 +66,7 @@ $ yarn start
 
 Este projeto está sob licença MIT. Veja o arquivo [LICENSE](LICENSE.md) para mais detalhes.
 
-Feito com :heart: por <a href="https://github.com/thiagonmiziara" target="_blank">thiagonmiziara</a>
+Feito com :heart: por <a href="https://github.com/GuilhermeFRocha" target="_blank">GuilhermeFRocha</a>
 
 &#xa0;
 
