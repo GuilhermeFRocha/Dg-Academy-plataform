@@ -1,14 +1,15 @@
 schema: https://api-sa-east-1.graphcms.com/v2/cl4o4ii2t0gxn01xr94862i6d/master
-documents: './src/graphql/**/*.graphql'
+
+documents: "./src/graphql/**/*.graphql"
+
 generates:
   ./src/graphql/generated.ts:
     plugins:
       - typescript
       - typescript-operations
       - typescript-react-apollo
-      config: 
+    config:
       reactApolloVersion: 3
       withHooks: true
       withHOC: false
-      withComponent: false
-      
+      withComponents: false

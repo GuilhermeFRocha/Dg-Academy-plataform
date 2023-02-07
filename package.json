@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "@apollo/client": "^3.6.8",
+    "@types/styled-components": "^5.1.26",
     "@vime/core": "^5.3.1",
     "@vime/react": "^5.3.1",
     "classnames": "^2.3.1",
@@ -18,7 +19,8 @@
     "phosphor-react": "^1.4.1",
     "react": "^18.0.0",
     "react-dom": "^18.0.0",
-    "react-router-dom": "^6.3.0"
+    "react-router-dom": "^6.3.0",
+    "styled-components": "^5.3.6"
   },
   "devDependencies": {
     "@graphql-codegen/cli": "^2.7.0",
