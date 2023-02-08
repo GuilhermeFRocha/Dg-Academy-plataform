@@ -41,14 +41,14 @@ export function Subscribe() {
         <div className="max-w-[640px]">
           <img src={Logos} alt="" />
           <h1 className="mt-8 text-[2.5rem] leading-tight">
-            Construa uma
-            <strong className="text-blue-500">aplicaçao completa</strong>, do
-            zero, com <strong className="text-blue-500">React</strong>
+            Acelere cada
+            <strong className="text-purpple-300 pr-3 pl-3">etapa</strong>da sua
+            carreira em
+            <strong className="text-purpple-300 pl-3">programação</strong>
           </h1>
           <p className="mt-4 text-gray-200 leading-relaxed">
-            Em apenas uma semana você vai dominar na prática uma das tecnologias
-            mais utilizadas e com alta demanda para acessar as melhores
-            oportunidades de trabalho.
+            O mapa completo para você impulsionar sua evolução e acessar as
+            melhores oportunidades da sua carreira como dev.
           </p>
         </div>
 
