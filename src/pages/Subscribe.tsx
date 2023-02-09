@@ -1,39 +1,44 @@
-import { useState, FormEvent } from "react";
-import { useNavigate } from "react-router-dom";
+import { gql } from "@apollo/client";
+import { useState } from "react";
+import { client } from "../lib/apollo";
+import { Link, useNavigate } from "react-router-dom";
 import Logos from "../assets/dgCompany.svg";
-import { useCreateSubscriberMutation } from "../graphql/generated";
-import AnimatedBackground from "../../src/components/AnimatedBackground";
-import {
-  EnvelopeSimple,
-  IdentificationBadge,
-  LockSimple,
-} from "phosphor-react";
-
-import { Link } from "react-router-dom";
+import { EnvelopeSimple, LockSimple } from "phosphor-react";
+import AnimatedBackground from "../components/AnimatedBackground";
 
 export function Subscribe() {
   const navigate = useNavigate();
 
-  const [name, setName] = useState("");
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-
-  const [createSubscriber, { loading }] = useCreateSubscriberMutation();
-
-  async function handleSubscribe(event: FormEvent) {
+  const handleSubmit = async (event: any) => {
     event.preventDefault();
 
-    await createSubscriber({
-      variables: {
-        name,
-        email,
-        password,
-      },
+    const { data } = await client.query({
+      query: gql`
+        query MyQuery {
+          subscribers {
+            email
+            password
+          }
+        }
+      `,
+      variables: { email, password },
     });
+    const userPassword = data.subscribers.filter(
+      (it: any) => it.password === password
+    );
+    const userEmail = data.subscribers.filter((it: any) => it.email === email);
 
-    navigate("/event");
-  }
+    if (userPassword[0] && userEmail[0]) {
+      navigate("/event");
+      return;
+    } else {
+      alert("Email ou Senha inválido");
+      return;
+    }
+  };
 
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
   return (
     <div className="min-h-screen bg-blur bg-cover bg-no-repeat flex flex-col items-center">
       <AnimatedBackground />
@@ -60,19 +65,17 @@ export function Subscribe() {
             Login
           </strong>
 
-          <form
-            onSubmit={handleSubscribe}
-            className="flex flex-col gap-2 w-full"
-          >
+          <form onSubmit={handleSubmit} className="flex flex-col gap-2 w-full">
             <div className="flex items-center justify-center">
               <div className="bg-dark-100 h-14 w-12 flex justify-center items-center rounded -mr-1 pr-1">
-                <IdentificationBadge size={20} weight="bold" />
+                <EnvelopeSimple size={20} weight="bold" />
               </div>
               <input
-                type="text"
-                placeholder="Seu nome completo"
-                className="bg-dark-400 rounded px-5 h-14 w-60 "
-                onChange={(e) => setName(e.target.value)}
+                type="email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                placeholder="Email"
+                className="bg-dark-400 rounded px-5 h-14 w-60"
               />
             </div>
 
@@ -81,33 +84,21 @@ export function Subscribe() {
                 <LockSimple size={20} weight="bold" />
               </div>
               <input
-                type="text"
-                placeholder="Digite sua senha"
-                className="bg-dark-400 rounded px-5 h-14 w-60"
+                type="password"
+                value={password}
                 onChange={(e) => setPassword(e.target.value)}
-              />
-            </div>
-            <div className="flex items-center justify-center">
-              <div className="bg-dark-100 h-14 w-12 flex justify-center items-center rounded -mr-1 pr-1">
-                <EnvelopeSimple size={20} weight="bold" />
-              </div>
-              <input
-                type="email"
-                placeholder="Digite seu e-mail"
+                placeholder="Password"
                 className="bg-dark-400 rounded px-5 h-14 w-60"
-                onChange={(e) => setEmail(e.target.value)}
               />
             </div>
 
             <button
               type="submit"
-              disabled={loading}
               className="mt-4 m-auto bg-purpple-600 uppercase py-4 rounded font-bold text-sm hover:bg-purpple-300 transition-colors disabled:opacity-50 h-19 w-72"
             >
               Entrar
             </button>
           </form>
-
           <div className="flex items-center gap-2 w-72 m-auto pt-10">
             <div className="w-2 h-11 rounded-lg bg-purpple-300 border-2 border-gray-900 border-purpple-700"></div>
             <div>
