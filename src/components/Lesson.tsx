@@ -31,6 +31,7 @@ export function Lesson(props: LessonProps) {
         className={`rounded border border-gray-400 p-4 mt-2 group-hover:border-purpple-400 ${
           isActive ? "bg-purpple-800" : ""
         }`}
+        style={{ transition: "all 2s", transform: "revert-layer" }}
       >
         <header className="flex items-center justify-between">
           {isLessonAvailable ? (
@@ -53,7 +54,7 @@ export function Lesson(props: LessonProps) {
               isActive ? "text-white-100" : ""
             }`}
           >
-            {props.type === "live" ? "AO VIVO" : "AULA PRATICA"}
+            {props.type === "live" ? "AO VIVO" : "AULA"}
           </span>
         </header>
         <strong

@@ -8,6 +8,7 @@ import AnimatedBackground from "../components/AnimatedBackground";
 
 export function Subscribe() {
   const navigate = useNavigate();
+  const [errosForm, setErrorForm] = useState("");
 
   const handleSubmit = async (event: any) => {
     event.preventDefault();
@@ -32,7 +33,7 @@ export function Subscribe() {
       navigate("/event");
       return;
     } else {
-      alert("Email ou Senha inválido");
+      setErrorForm("Email ou Senha invalida");
       return;
     }
   };
@@ -91,6 +92,12 @@ export function Subscribe() {
                 className="bg-dark-400 rounded px-5 h-14 w-60"
               />
             </div>
+
+            {errosForm !== "" && (
+              <div className="flex items-center justify-center mt-4 text-red-100">
+                <p> {errosForm}</p>
+              </div>
+            )}
 
             <button
               type="submit"
