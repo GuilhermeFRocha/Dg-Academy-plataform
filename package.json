@@ -11,6 +11,7 @@
   "dependencies": {
     "@apollo/client": "^3.6.8",
     "@apollo/react-hooks": "^4.0.0",
+    "@lottiefiles/lottie-player": "^1.7.1",
     "@types/styled-components": "^5.1.26",
     "@vime/core": "^5.3.1",
     "@vime/react": "^5.3.1",
@@ -23,6 +24,7 @@
     "react": "^18.0.0",
     "react-bootstrap": "^2.7.1",
     "react-dom": "^18.0.0",
+    "react-lottie-player": "^1.5.4",
     "react-router-dom": "^6.3.0",
     "react-transition-group": "^4.4.5",
     "semantic-ui-react": "^2.1.4",

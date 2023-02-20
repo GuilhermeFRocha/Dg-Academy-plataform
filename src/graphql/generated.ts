@@ -5669,6 +5669,11 @@ export type GetLessonBySlugQuery = {
     videoId: string;
     description?: string | null;
     challenge: any;
+    module?: {
+      __typename?: "Module";
+      id: any;
+      name_id: any;
+    };
     teacher?: {
       __typename?: "Teacher";
       bio: string;
@@ -5689,6 +5694,11 @@ export type GetLessonsQuery = {
     slug: string;
     availableAt?: any | null;
     lessonType: LessonType;
+    module?: {
+      __typename?: "Module";
+      id: any;
+      name_id: any;
+    };
     teacher: {
       id?: any;
     };
@@ -5829,6 +5839,10 @@ export const GetLessonsDocument = gql`
       slug
       availableAt
       lessonType
+      module {
+        id
+        name_id
+      }
       teacher {
         id
       }

@@ -1,10 +1,10 @@
 import styled from "styled-components";
-import { ArrowRight } from "phosphor-react";
+import { ArrowDown } from "phosphor-react";
 
-export const Arrow = styled(ArrowRight)`
+export const Arrow = styled(ArrowDown)`
   transition: transform 0.2s ease;
 
   &.rotated {
-    transform: rotate(90deg);
+    transform: rotate(-90deg);
   }
 `;

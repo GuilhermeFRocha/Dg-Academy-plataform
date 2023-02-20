@@ -1,5 +1,5 @@
 import { gql } from "@apollo/client";
-import { useState } from "react";
+import { useState, useContext, useEffect } from "react";
 import { client } from "../lib/apollo";
 import { Link, useNavigate } from "react-router-dom";
 import Logos from "../assets/dgCompany.svg";
