@@ -14,15 +14,16 @@ export function Router() {
 
   return (
     <Routes>
-      <Route path="/" element={<Subscribe />} />
-      <Route path="/register" element={<Register />} />
-      {validationRoute && (
+      <Route path='/' element={<Subscribe />} />
+      <Route path='/register' element={<Register />} />
+      {validationRoute ? (
         <>
-          <Route path="/event" element={<Event />} />
-          <Route path="/event/lesson/:slug" element={<Event />} />
+          <Route path='/event' element={<Event />} />
+          <Route path='/event/lesson/:slug' element={<Event />} />
         </>
+      ) : (
+        <Route path='/event' element={<ErrorPage />} />
       )}
-      <Route path="/error" element={<ErrorPage />} />
     </Routes>
   );
 }

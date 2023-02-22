@@ -1,4 +1,4 @@
-import { useState, FormEvent } from "react";
+import { useState, FormEvent, useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import Logos from "../assets/dgCompany.svg";
 import { useCreateSubscriberMutation } from "../graphql/generated";
@@ -10,9 +10,11 @@ import {
 } from "phosphor-react";
 
 import { Link } from "react-router-dom";
+import { Context } from '../Context/Context';
 
 export function Register() {
   const navigate = useNavigate();
+  const { setValidationRoute } = useContext(Context);
 
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
@@ -30,7 +32,7 @@ export function Register() {
         password,
       },
     });
-
+    setValidationRoute(true)
     navigate("/event");
   }
 
