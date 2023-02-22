@@ -5,10 +5,12 @@ import { Link, useNavigate } from "react-router-dom";
 import Logos from "../assets/dgCompany.svg";
 import { EnvelopeSimple, LockSimple } from "phosphor-react";
 import AnimatedBackground from "../components/AnimatedBackground";
+import { Context } from "../Context/Context";
 
 export function Subscribe() {
   const navigate = useNavigate();
   const [errosForm, setErrorForm] = useState("");
+  const { setValidationRoute } = useContext(Context);
 
   const handleSubmit = async (event: any) => {
     event.preventDefault();
@@ -31,6 +33,7 @@ export function Subscribe() {
 
     if (userPassword[0] && userEmail[0]) {
       navigate("/event");
+      setValidationRoute(true);
       return;
     } else {
       setErrorForm("Email ou Senha invalida");
