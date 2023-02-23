@@ -1,6 +1,5 @@
 import { useState, FormEvent, useContext } from "react";
 import { useNavigate } from "react-router-dom";
-import Logos from "../assets/dgCompany.svg";
 import { useCreateSubscriberMutation } from "../graphql/generated";
 import AnimatedBackground from "../../src/components/AnimatedBackground";
 import {
@@ -11,6 +10,7 @@ import {
 
 import { Link } from "react-router-dom";
 import { Context } from '../Context/Context';
+import { HomePage } from "../components/HomePage";
 
 export function Register() {
   const navigate = useNavigate();
@@ -19,40 +19,35 @@ export function Register() {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [error,setError] = useState('')
 
   const [createSubscriber, { loading }] = useCreateSubscriberMutation();
 
   async function handleSubscribe(event: FormEvent) {
     event.preventDefault();
+    if (name || email || password === '') {
+      setError('preencha todos os dados')
+    }
 
-    await createSubscriber({
-      variables: {
-        name,
-        email,
-        password,
-      },
-    });
-    setValidationRoute(true)
-    navigate("/event");
+    if (name && email && password !== '') {
+      await createSubscriber({
+        variables: {
+          name,
+          email,
+          password,
+        },
+      });
+      setValidationRoute(true)
+      navigate("/event");
+    }
+   
   }
 
   return (
     <div className="min-h-screen bg-blur bg-cover bg-no-repeat flex flex-col items-center">
       <AnimatedBackground />
       <div className="z-50 w-full max-w-[1100px] flex justify-between items-center mt-20 mx-auto">
-        <div className="max-w-[640px]">
-          <img src={Logos} alt="" />
-          <h1 className="mt-8 text-[2.5rem] leading-tight">
-            Acelere cada
-            <strong className="text-purpple-300 pr-3 pl-3">etapa</strong>da sua
-            carreira em
-            <strong className="text-purpple-300 pl-3">programação</strong>
-          </h1>
-          <p className="mt-4 text-gray-200 leading-relaxed">
-            O mapa completo para você impulsionar sua evolução e acessar as
-            melhores oportunidades da sua carreira como dev.
-          </p>
-        </div>
+       <HomePage/>
 
         <div
           className=" bg-gray-1000"
@@ -99,6 +94,9 @@ export function Register() {
                 className="bg-dark-400 rounded px-5 h-14 w-60"
                 onChange={(e) => setEmail(e.target.value)}
               />
+            </div>
+            <div className="flex items-center justify-center mt-4 text-red-100">
+            <p>{error}</p>
             </div>
 
             <button

@@ -2,10 +2,10 @@ import { gql } from "@apollo/client";
 import { useState, useContext, useEffect } from "react";
 import { client } from "../lib/apollo";
 import { Link, useNavigate } from "react-router-dom";
-import Logos from "../assets/dgCompany.svg";
-import { EnvelopeSimple, LockSimple } from "phosphor-react";
+import { EnvelopeSimple, LockSimple, Eye } from "phosphor-react";
 import AnimatedBackground from "../components/AnimatedBackground";
 import { Context } from "../Context/Context";
+import { HomePage } from "../components/HomePage";
 
 export function Subscribe() {
   const navigate = useNavigate();
@@ -47,17 +47,7 @@ export function Subscribe() {
     <div className="min-h-screen bg-blur bg-cover bg-no-repeat flex flex-col items-center">
       <AnimatedBackground />
       <div className="z-50 w-full max-w-[1100px] flex justify-between items-center mt-20 mx-auto">
-        <div className="max-w-[640px]">
-          <img src={Logos} alt="" />
-          <h1 className="mt-8 text-[2.5rem] leading-tight">
-            Transforme sua
-            <strong className="text-purpple-300 pr-3 pl-3">jornada</strong>na programação em uma estrada rápida para o 
-            <strong className="text-purpple-300 pl-3">sucesso.</strong >
-          </h1>
-          <p className="mt-4 text-gray-200 leading-relaxed">
-          Desenvolva suas habilidades em programação e crie o futuro que você imagina, tudo isso com nossa aplicação interativa e super didádica!
-          </p>
-        </div>
+        <HomePage/>
 
         <div
           className=" bg-gray-1000"
@@ -85,13 +75,17 @@ export function Subscribe() {
               <div className="bg-dark-100 h-14 w-12 flex justify-center items-center rounded -mr-1 pr-1">
                 <LockSimple size={20} weight="bold" />
               </div>
+              <div className="relative">
               <input
                 type="password"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
                 placeholder="Password"
-                className="bg-dark-400 rounded px-5 h-14 w-60"
-              />
+                className="bg-dark-400 rounded px-5 h-14 w-60 "
+                
+                />
+                <Eye className="absolute right-4 top-1/3 text-purple-700 " size='20px'/>
+                </div>
             </div>
 
             {errosForm !== "" && (
