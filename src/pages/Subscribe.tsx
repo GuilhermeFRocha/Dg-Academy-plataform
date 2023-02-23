@@ -2,15 +2,14 @@ import { gql } from "@apollo/client";
 import { useState, useContext, useEffect } from "react";
 import { client } from "../lib/apollo";
 import { Link, useNavigate } from "react-router-dom";
-import { EnvelopeSimple, LockSimple, Eye } from "phosphor-react";
+import { EnvelopeSimple, LockSimple, Eye, EyeSlash } from "phosphor-react";
 import AnimatedBackground from "../components/AnimatedBackground";
-import { Context } from "../Context/Context";
 import { HomePage } from "../components/HomePage";
 
 export function Subscribe() {
   const navigate = useNavigate();
   const [errosForm, setErrorForm] = useState("");
-  const { setValidationRoute } = useContext(Context);
+  const [typePassword, setTypePassword] = useState("text");
 
   const handleSubmit = async (event: any) => {
     event.preventDefault();
@@ -32,8 +31,9 @@ export function Subscribe() {
     const userEmail = data.subscribers.filter((it: any) => it.email === email);
 
     if (userPassword[0] && userEmail[0]) {
+      localStorage.setItem("key", "asmkdaksmdkasd");
       navigate("/event");
-      setValidationRoute(true);
+      window.location.reload();
       return;
     } else {
       setErrorForm("Email ou Senha invalida");
@@ -41,13 +41,21 @@ export function Subscribe() {
     }
   };
 
+  function handleClick() {
+    setTypePassword("text");
+  }
+
+  function handleClickSlash() {
+    setTypePassword("password");
+  }
+
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   return (
     <div className="min-h-screen bg-blur bg-cover bg-no-repeat flex flex-col items-center">
       <AnimatedBackground />
       <div className="z-50 w-full max-w-[1100px] flex justify-between items-center mt-20 mx-auto">
-        <HomePage/>
+        <HomePage />
 
         <div
           className=" bg-gray-1000"
@@ -76,16 +84,27 @@ export function Subscribe() {
                 <LockSimple size={20} weight="bold" />
               </div>
               <div className="relative">
-              <input
-                type="password"
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-                placeholder="Password"
-                className="bg-dark-400 rounded px-5 h-14 w-60 "
-                
+                <input
+                  type={typePassword}
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
+                  placeholder="Password"
+                  className="bg-dark-400 rounded px-5 h-14 w-60 "
                 />
-                <Eye className="absolute right-4 top-1/3 text-purple-700 " size='20px'/>
-                </div>
+                {typePassword === "password" ? (
+                  <EyeSlash
+                    className="absolute right-4 top-1/3 text-purple-700 "
+                    size="20px"
+                    onClick={handleClick}
+                  />
+                ) : (
+                  <Eye
+                    className="absolute right-4 top-1/3 text-purple-700 "
+                    size="20px"
+                    onClick={handleClickSlash}
+                  />
+                )}
+              </div>
             </div>
 
             {errosForm !== "" && (
