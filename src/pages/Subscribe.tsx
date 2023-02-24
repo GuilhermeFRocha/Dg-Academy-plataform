@@ -5,6 +5,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { EnvelopeSimple, LockSimple, Eye, EyeSlash } from "phosphor-react";
 import AnimatedBackground from "../components/AnimatedBackground";
 import { HomePage } from "../components/HomePage";
+import { Vortex } from "react-loader-spinner";
 
 export function Subscribe() {
   const navigate = useNavigate();
@@ -58,6 +59,26 @@ export function Subscribe() {
   return (
     <div className="min-h-screen bg-blur bg-cover bg-no-repeat flex flex-col items-center">
       <AnimatedBackground />
+      {loadingSpiner && (
+          <div className="vortex">
+            <Vortex
+              visible={true}
+              height="200"
+              width="200"
+              ariaLabel="vortex-loading"
+              wrapperStyle={{}}
+              wrapperClass="vortex-wrapper"
+              colors={[
+                "#7453f8",
+                "#7453f8",
+                "#afadc6",
+                "#7453f8",
+                "#afadc6",
+                "#7453f8",
+              ]}
+            />
+          </div>
+        )}
       <div className="z-50 w-full max-w-[1100px] flex justify-between items-center mt-20 mx-auto">
         <HomePage />
 
