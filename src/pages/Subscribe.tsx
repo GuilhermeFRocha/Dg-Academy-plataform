@@ -10,6 +10,8 @@ export function Subscribe() {
   const navigate = useNavigate();
   const [errosForm, setErrorForm] = useState("");
   const [typePassword, setTypePassword] = useState("text");
+  const [loadingSpiner, setLoadingSpiner] = useState(false);
+
 
   const handleSubmit = async (event: any) => {
     event.preventDefault();
@@ -31,9 +33,11 @@ export function Subscribe() {
     const userEmail = data.subscribers.filter((it: any) => it.email === email);
 
     if (userPassword[0] && userEmail[0]) {
+      setLoadingSpiner(true);
       localStorage.setItem("key", "asmkdaksmdkasd");
       navigate("/event");
       window.location.reload();
+      setLoadingSpiner(false);
       return;
     } else {
       setErrorForm("Email ou Senha invalida");

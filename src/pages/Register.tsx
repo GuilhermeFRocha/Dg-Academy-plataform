@@ -13,11 +13,12 @@ import {
 
 import { Link } from "react-router-dom";
 import { HomePage } from "../components/HomePage";
+import { Vortex } from "react-loader-spinner";
 
 export function Register() {
   const navigate = useNavigate();
   const [typePassword, setTypePassword] = useState("text");
-  const [loadingSpiner, setLoadingSpiner] = useState(true);
+  const [loadingSpiner, setLoadingSpiner] = useState(false);
 
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
@@ -67,7 +68,26 @@ export function Register() {
       <AnimatedBackground />
       <div className="z-50 w-full max-w-[1100px] flex justify-between items-center mt-20 mx-auto">
         <HomePage />
-        {loadingSpiner && <div>load</div>}
+        {loadingSpiner && (
+          <div className="vortex">
+            <Vortex
+              visible={true}
+              height="200"
+              width="200"
+              ariaLabel="vortex-loading"
+              wrapperStyle={{}}
+              wrapperClass="vortex-wrapper"
+              colors={[
+                "#7453f8",
+                "#7453f8",
+                "#afadc6",
+                "#7453f8",
+                "#afadc6",
+                "#7453f8",
+              ]}
+            />
+          </div>
+        )}
         <div
           className=" bg-gray-1000"
           style={{ width: "400px", height: "460px", borderRadius: "8px" }}
