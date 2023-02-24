@@ -13,6 +13,7 @@ export function Subscribe() {
   const [typePassword, setTypePassword] = useState("text");
   const [loadingSpiner, setLoadingSpiner] = useState(false);
 
+  const valueKey = Math.random().toString()
 
   const handleSubmit = async (event: any) => {
     event.preventDefault();
@@ -35,7 +36,7 @@ export function Subscribe() {
 
     if (userPassword[0] && userEmail[0]) {
       setLoadingSpiner(true);
-      localStorage.setItem("key", "asmkdaksmdkasd");
+      localStorage.setItem("key", valueKey);
       navigate("/event");
       window.location.reload();
       setLoadingSpiner(false);

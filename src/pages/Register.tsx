@@ -16,6 +16,7 @@ import { HomePage } from "../components/HomePage";
 import { Vortex } from "react-loader-spinner";
 
 export function Register() {
+  const valueKey = Math.random().toString()
   const navigate = useNavigate();
   const [typePassword, setTypePassword] = useState("text");
   const [loadingSpiner, setLoadingSpiner] = useState(false);
@@ -40,7 +41,7 @@ export function Register() {
 
     if (name && email && password !== "") {
       setLoadingSpiner(true);
-      localStorage.setItem("key", "asmkdaksmdkasd");
+      localStorage.setItem("key", valueKey);
 
       await createSubscriber({
         variables: {
