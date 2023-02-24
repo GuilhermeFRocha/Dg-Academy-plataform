@@ -4,10 +4,19 @@ import { useState } from "react";
 import "../styles/style.css";
 import { Arrow } from "../styles/sidebar";
 
+
+type Lesson = {
+  module?: {
+    id?: string;
+}
+}
+type Data = {
+  lessons: Lesson[];
+}
 export function Sidebar() {
   const { data } = useGetLessonsQuery();
 
-  const idsToFilter = data?.lessons.map((les) => les.module?.id);
+  const idsToFilter : any | undefined = data?.lessons.map((les) => les.module?.id);
 
   const filteredLessons = data?.lessons.filter((it) =>
     idsToFilter?.includes(it.module?.id)
