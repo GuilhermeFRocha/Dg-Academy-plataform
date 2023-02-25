@@ -1,4 +1,4 @@
-import { Route, Routes } from "react-router-dom";
+import { Route, Routes,} from "react-router-dom";
 import { Event } from "../pages/Event";
 import { Register } from "../pages/Register";
 import { Subscribe } from "../pages/Subscribe";
