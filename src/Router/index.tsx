@@ -9,12 +9,8 @@ export function Router() {
     <Routes>
       <Route path="/" element={<Subscribe />} />
       <Route path="/register" element={<Register />} />
-      {localStorage.getItem("key") !== null && (
-        <>
           <Route path="/event" element={<Event />} />
           <Route path="/event/lesson/:slug" element={<Event />} />
-        </>
-      )}
     </Routes>
   );
 }
