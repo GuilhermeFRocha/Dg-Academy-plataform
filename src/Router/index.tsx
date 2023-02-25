@@ -6,10 +6,14 @@ import { Subscribe } from "../pages/Subscribe";
 export function Router() {
   return (
     <Routes>
-      <Route path='/' element={<Subscribe />} />
-      <Route path='/register' element={<Register />} />
-      <Route path='/event' element={<Event />} />
-      <Route path='/event/lesson/:slug' element={<Event />} />
+      <Route path="/" element={<Subscribe />} />
+      <Route path="/register" element={<Register />} />
+      {localStorage.getItem("key") !== null && (
+        <>
+          <Route path="/event" element={<Event />} />
+          <Route path="/event/lesson/:slug" element={<Event />} />
+        </>
+      )}
     </Routes>
   );
 }
