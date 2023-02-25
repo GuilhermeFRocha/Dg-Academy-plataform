@@ -7,12 +7,36 @@ import {
 } from "phosphor-react";
 import "@vime/core/themes/default.css";
 import { useGetLessonBySlugQuery } from "../graphql/generated";
+import axios from "axios";
+import { useEffect, useState } from "react";
 
 interface VideoProps {
   lessonSlug: string;
 }
 
 export function Video(props: VideoProps) {
+  const { data:datas } = useGetLessonBySlugQuery({
+    variables: {
+      slug: props.lessonSlug,
+    },
+  });
+  const [duration, setDuration] = useState('');
+  const VIDEO_ID = datas?.lesson?.videoId; // substitua pelo ID do vídeo do YouTube
+  const API_KEY= "AIzaSyACsXn9pxEZdruNQusHIqI9Ero7uvLD-zQ"
+ 
+  useEffect(() => {
+    axios.get(`https://www.googleapis.com/youtube/v3/videos?id=${VIDEO_ID}&key=${API_KEY}&part=contentDetails`)
+      .then(response => {
+        const duration = response.data.items[0].contentDetails.duration;
+        setDuration(duration);
+      })
+      .catch(error => console.log(error));
+  }, [VIDEO_ID]);
+
+ const match: any | null = duration.match(/PT(\d+)M(\d+)S/);
+
+  
+
   const { data } = useGetLessonBySlugQuery({
     variables: {
       slug: props.lessonSlug,
@@ -22,6 +46,9 @@ export function Video(props: VideoProps) {
   if (!data || !data.lesson) {
     return <div className="flex-1">Loading...</div>;
   }
+ // <p>{duration && (
+   // `${match[1]} ${match[2]}`
+  //  )}</p>
 
   return (
     <div className="flex-1 bg-dark-500">

@@ -8,7 +8,6 @@ import {
   EyeSlash,
   IdentificationBadge,
   LockSimple,
-  Spinner,
 } from "phosphor-react";
 
 import { Link } from "react-router-dom";

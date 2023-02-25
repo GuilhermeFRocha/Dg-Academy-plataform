@@ -2,11 +2,8 @@ import { Route, Routes } from "react-router-dom";
 import { Event } from "./pages/Event";
 import { Register } from "./pages/Register";
 import { Subscribe } from "./pages/Subscribe";
-import { ErrorPage } from "./pages/Error";
 
 export function Router() {
-  const routes = localStorage.getItem("key");
-  console.log(routes);
 
   return (
     <Routes>

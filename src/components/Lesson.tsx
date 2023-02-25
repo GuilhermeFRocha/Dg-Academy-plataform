@@ -23,7 +23,8 @@ export function Lesson(props: LessonProps) {
   );
 
   const isActive = slug === props.slug;
-
+    console.log(props);
+    
   return (
     <Link to={`/event/lesson/${props.slug}`} className="group">
       <span className="text-gray-150">{avaliableDateFormatted}</span>

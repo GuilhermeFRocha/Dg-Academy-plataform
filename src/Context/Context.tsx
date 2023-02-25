@@ -12,8 +12,8 @@ interface Props {
 }
 
 export function ContextProvider({ children }: Props) {
-  const [validationRoute, setValidationRoute] = useState(false);
-
+  const [validationRoute, setValidationRoute] = useState(false);;
+  
   return (
     <Context.Provider
       value={{
