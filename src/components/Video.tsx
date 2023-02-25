@@ -7,8 +7,8 @@ import {
 } from "phosphor-react";
 import "@vime/core/themes/default.css";
 import { useGetLessonBySlugQuery } from "../graphql/generated";
-import axios from "axios";
-import { useEffect, useState } from "react";
+// import axios from "axios";
+// import { useEffect, useState } from "react";
 
 interface VideoProps {
   lessonSlug: string;
@@ -20,20 +20,20 @@ export function Video(props: VideoProps) {
       slug: props.lessonSlug,
     },
   });
-  const [duration, setDuration] = useState('');
-  const VIDEO_ID = datas?.lesson?.videoId; // substitua pelo ID do vídeo do YouTube
-  const API_KEY= "AIzaSyACsXn9pxEZdruNQusHIqI9Ero7uvLD-zQ"
+ // const [duration, setDuration] = useState('');
+ // const VIDEO_ID = datas?.lesson?.videoId; // substitua pelo ID do vídeo do YouTube
+ // const API_KEY= "AIzaSyACsXn9pxEZdruNQusHIqI9Ero7uvLD-zQ"
  
-  useEffect(() => {
-    axios.get(`https://www.googleapis.com/youtube/v3/videos?id=${VIDEO_ID}&key=${API_KEY}&part=contentDetails`)
-      .then(response => {
-        const duration = response.data.items[0].contentDetails.duration;
-        setDuration(duration);
-      })
-      .catch(error => console.log(error));
-  }, [VIDEO_ID]);
+ // useEffect(() => {
+  //  axios.get(`https://www.googleapis.com/youtube/v3/videos?id=${VIDEO_ID}&key=${API_KEY}&part=contentDetails`)
+   //   .then(response => {
+    //    const duration = response.data.items[0].contentDetails.duration;
+     //   setDuration(duration);
+    //  })
+    //  .catch(error => console.log(error));
+ // }, [VIDEO_ID]);
 
- const match: any | null = duration.match(/PT(\d+)M(\d+)S/);
+// const match: any | null = duration.match(/PT(\d+)M(\d+)S/);
 
   
 
