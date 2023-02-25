@@ -1,7 +1,7 @@
 import { Route, Routes } from "react-router-dom";
-import { Event } from "./pages/Event";
-import { Register } from "./pages/Register";
-import { Subscribe } from "./pages/Subscribe";
+import { Event } from "../pages/Event";
+import { Register } from "../pages/Register";
+import { Subscribe } from "../pages/Subscribe";
 
 export function Router() {
 
