@@ -15,6 +15,7 @@
     "@types/styled-components": "^5.1.26",
     "@vime/core": "^5.4.0",
     "@vime/react": "^5.4.0",
+    "axios": "^1.3.5",
     "bootstrap": "^5.2.3",
     "caniuse-lite": "^1.0.30001457",
     "classnames": "^2.3.1",
